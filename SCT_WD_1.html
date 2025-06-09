@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Easy Interactive Navigation Menu</title>
+<style>
+  /* Import a clean modern font */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+  /* Basic reset and body style */
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #6b7280; /* neutral gray */
+  }
+
+  /* Style the navigation bar */
+  nav {
+    position: fixed;  /* Fix at top so it stays visible */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255 255 255 / 0.9);  /* Slightly transparent white */
+    backdrop-filter: saturate(180%) blur(8px);  /* Make it a little glassy */
+    box-shadow: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000; /* Stay on top */
+  }
+
+  /* When page is scrolled down, change nav background and add shadow */
+  nav.scrolled {
+    background-color: #f9fafb;  /* Light gray background */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);  /* Soft shadow */
+  }
+
+  /* Container inside nav for layout */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Logo style */
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #2563eb; /* Blue */
+    user-select: none;
+    cursor: default;
+  }
+
+  /* Navigation menu, list style none and horizontal layout */
+  ul.nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 24px;
+  }
+
+  /* Each menu item */
+  ul.nav-menu li a {
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  /* Hover and keyboard focus style */
+  ul.nav-menu li a:hover,
+  ul.nav-menu li a:focus-visible {
+    color: #2563eb;
+    background-color: rgba(37, 99, 235, 0.1);
+    outline: none;
+    transform: scale(1.05);
+  }
+
+  /* Special style for "Books : Treasure of knowledge" menu item */
+  ul.nav-menu li.books a {
+    font-weight: 700;
+    color: #2563eb;
+  }
+
+  /* When nav is scrolled, highlight "Books" menu item */
+  nav.scrolled ul.nav-menu li.books a {
+    background-color: #2563eb;
+    color: white;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+  }
+
+  /* Content area with padding and margin top so content is below nav */
+  main {
+    max-width: 900px;
+    margin: 80px auto 40px; /* margin top of 80px to avoid nav overlap */
+    padding: 0 20px;
+    color: #374151; /* dark gray for text */
+  }
+
+  /* Headline style */
+  main h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #111827;
+  }
+
+  /* Paragraph text style */
+  main p {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Keyboard focus visible outline for accessibility */
+  a:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 4px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .container {
+      padding: 0 15px;
+    }
+    ul.nav-menu {
+      gap: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<nav id="main-nav" aria-label="Main navigation">
+  <div class="container">
+    <div class="logo" tabindex="0" aria-label="Books Logo">Books</div>
+    <ul class="nav-menu">
+      <li class="books"><a href="#" tabindex="0">Books : Treasure of knowledge</a></li>
+      <li><a href="#" tabindex="0">Home</a></li>
+      <li><a href="#" tabindex="0">About</a></li>
+      <li><a href="#" tabindex="0">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Main content area -->
+<main>
+  <h1>Welcome to Books : Treasure of knowledge</h1>
+  <p>This website helps you find great books and learn new things every day.</p>
+  <p>Scroll down the page to see the navigation menu change its style when you scroll.</p>
+  <p>Hover over the menu item <strong>"Books : Treasure of knowledge"</strong> to see it brighten and change color.</p>
+
+  <p style="margin-top: 1000px;">Keep scrolling to see the effect clearly.</p>
+</main>
+
+<script>
+  // Get the navigation bar element
+  const nav = document.getElementById('main-nav');
+
+  // Amount of scroll in pixels before nav style changes
+  const scrollLimit = 50;
+
+  // Listen for page scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollLimit) {
+      nav.classList.add('scrolled'); // Add class when scrolled
+    } else {
+      nav.classList.remove('scrolled'); // Remove class when near top
+    }
+  });
+</script>
+</body>
+</html>
+
